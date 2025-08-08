@@ -33,7 +33,15 @@ def get_rows():
 
 # --- Étape 2 : Filtrer par status ---
 def filter_check_email(rows):
-    return [{"id": row["id"], "email": row["Email"]} for row in rows if row.get("Status") == "check email"]
+    # Debug: voir tous les status uniques
+    statuses = set(row.get("status") for row in rows if row.get("status"))
+    print(f"Status trouvés: {statuses}")
+    
+    # Debug: compter les "check email"
+    check_email_count = sum(1 for row in rows if row.get("status") == "check email")
+    print(f"Nombre de 'check email': {check_email_count}")
+    
+    return [{"id": row["id"], "email": row["Email"]} for row in rows if row.get("status") == "check email"]
 
 # --- Étape 3 : Envoyer vers le webhook n8n ---
 def send_to_n8n(data):
