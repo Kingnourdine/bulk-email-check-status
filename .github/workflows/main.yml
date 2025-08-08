@@ -24,4 +24,4 @@ jobs:
         env:
           BASEROW_API_TOKEN: ${{ secrets.BASEROW_API_TOKEN }}
           N8N_WEBHOOK_URL: ${{ secrets.N8N_WEBHOOK_URL }}
-        run: python send_to_n8n.py
+        run: python bulk-email-check-status.py
