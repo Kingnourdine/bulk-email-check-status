@@ -51,10 +51,17 @@ def send_to_n8n(data):
 
 # --- Main ---
 if __name__ == "__main__":
-    all_rows = get_rows()
-    to_check = filter_check_email(all_rows)
+    try:
+        all_rows = get_rows()
+        print(f"Total rows récupérées: {len(all_rows)}")
+        
+        to_check = filter_check_email(all_rows)
 
-    if to_check:
-        send_to_n8n(to_check)
-    else:
-        print("⚠️ Aucun enregistrement avec status 'check email'")
+        if to_check:
+            send_to_n8n(to_check)
+        else:
+            print("⚠️ Aucun enregistrement avec status 'check email'")
+    except Exception as e:
+        print(f"Erreur: {e}")
+        import traceback
+        traceback.print_exc()
