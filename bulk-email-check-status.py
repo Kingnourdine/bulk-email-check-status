@@ -3,7 +3,7 @@ import os
 
 # --- Config ---
 BASEROW_API_TOKEN = os.getenv("BASEROW_API_TOKEN")
-BASEROW_TABLE_ID = "12345"  # ID de ta table
+BASEROW_TABLE_ID = "2"  # ID de ta table
 N8N_WEBHOOK_URL = os.getenv("N8N_WEBHOOK_URL")  # URL du webhook n8n
 
 # --- Headers Baserow ---
@@ -17,7 +17,7 @@ def get_rows():
     print(f"Token configuré: {'Oui' if BASEROW_API_TOKEN else 'Non'}")
     print(f"Table ID: {BASEROW_TABLE_ID}")
     
-    url = f"https://api.baserow.io/api/database/rows/table/{BASEROW_TABLE_ID}/?user_field_names=true"
+    url = f"https://baserow.srv932558.hstgr.cloud/api/database/rows/table/{BASEROW_TABLE_ID}/?user_field_names=true"
     rows = []
     while url:
         print(f"Requête vers: {url}")
