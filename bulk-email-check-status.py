@@ -13,10 +13,18 @@ baserow_headers = {
 
 # --- Étape 1 : Récupérer toutes les rows ---
 def get_rows():
+    # Debug: vérifier les variables
+    print(f"Token configuré: {'Oui' if BASEROW_API_TOKEN else 'Non'}")
+    print(f"Table ID: {BASEROW_TABLE_ID}")
+    
     url = f"https://api.baserow.io/api/database/rows/table/{BASEROW_TABLE_ID}/?user_field_names=true"
     rows = []
     while url:
+        print(f"Requête vers: {url}")
         r = requests.get(url, headers=baserow_headers)
+        print(f"Status code: {r.status_code}")
+        if r.status_code != 200:
+            print(f"Erreur: {r.text}")
         r.raise_for_status()
         data = r.json()
         rows.extend(data["results"])
