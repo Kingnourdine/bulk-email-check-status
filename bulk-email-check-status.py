@@ -33,9 +33,9 @@ def get_rows():
 
 # --- Étape 2 : Filtrer par status ---
 def filter_check_email(rows):
-    # Debug: voir tous les status uniques
-    statuses = set(row.get("status") for row in rows if row.get("status"))
-    print(f"Status trouvés: {statuses}")
+    # Debug: voir tous les status uniques (convertis en string)
+    statuses = set(str(row.get("status")) for row in rows if row.get("status"))
+    print(f"Status trouvés: {list(statuses)[:10]}...")  # Affiche les 10 premiers
     
     # Debug: compter les "check email"
     check_email_count = sum(1 for row in rows if row.get("status") == "check email")
